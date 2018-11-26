@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
   usuarioSeleccionado: any;
   password: string = "";
   regalo: string;
+  friendGift: string = "";
 
   constructor(private http: Http) { }
 
@@ -80,6 +81,7 @@ export class MainComponent implements OnInit {
         let aleatorio = Math.floor(Math.random()*amigoGenerado.length);
         amigoGenerado = amigoGenerado[aleatorio];
         this.friend = user.amigo && user.amigo !== "" ? user.amigo : amigoGenerado.nombre;
+        this.friendGift = amigoGenerado ? amigoGenerado.regalo ? amigoGenerado.regalo : "Aun no sabe" : "";
         this.UpdateUser();
       }
     }
