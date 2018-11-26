@@ -15,6 +15,6 @@ app.use(cors());
 
 mongoose.connect('mongodb://localhost:27017/amigosecreto', {});
 
-app.listen(80, () => {
-    console.log("Server up on port 80");
+app.listen(8080, () => {
+    console.log("Server up on port 8080");
 });
