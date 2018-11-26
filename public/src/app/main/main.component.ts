@@ -64,9 +64,7 @@ export class MainComponent implements OnInit {
       var usuario = this.usuarios.filter((usuario)=>{
         return usuario._id === this.usuarioSeleccionado;
       })[0];
-      console.log(usuario)
       this.regalo = usuario.regalo ? usuario.regalo : "";
-      console.log(this.regalo);
       if (this.regalo && this.regalo !== "") {
         this.ocultarRegalo = true;
       } else {
@@ -99,7 +97,6 @@ export class MainComponent implements OnInit {
               a._id !== this.usuarioSeleccionado &&
               a.familia !== user.familia;
           });
-          console.log(amigoGenerado);
           let aleatorio = Math.floor(Math.random() * amigoGenerado.length);
           amigoGenerado = amigoGenerado[aleatorio];
           this.friend = user.amigo && user.amigo !== "" ? user.amigo : amigoGenerado.nombre;
@@ -124,13 +121,11 @@ export class MainComponent implements OnInit {
       password: this.password,
       regalo: this.regalo
     }
-    console.log(body)
     return this.http.post('api/users', body).map(response => <String[]>response.json());
   }
 
   UpdateUser() {
     this.callUpdateUser().subscribe(response => {
-      console.log("response:", response);
       this.obtainUsers();
       return response;
     }, error => {
