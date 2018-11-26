@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   password: string = "";
   regalo: string;
   friendGift: string = "";
+  ocultarRegalo: boolean = false;
 
   constructor(private http: Http) { }
 
@@ -51,20 +52,19 @@ export class MainComponent implements OnInit {
   }
 
   validateRegalo() {
-    if (!this.regalo || this.regalo === "") {
+    if (!this.regalo || this.regalo === "" || !this.ocultarRegalo) {
       return true;
     }
     return false;
   }
 
   actualizar() {
-    console.log("ACTUALIZAR");
-    console.log(this.usuarioSeleccionado)
     if (this.usuarioSeleccionado) {
       var usuario = this.usuarios.filter((usuario)=>{
         return usuario._id = this.usuarioSeleccionado;
       })[0];
       this.regalo = usuario.regalo ? usuario.regalo : "";
+      this.ocultarRegalo = true;
     }
   }
 

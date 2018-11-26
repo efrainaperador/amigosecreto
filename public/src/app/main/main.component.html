@@ -18,10 +18,18 @@
       Contraseña:
     </label>
     <input type="password" class="select" [(ngModel)]="password" />
-    <label class="label">
-      ¿Qué quiero de regalo?:
-    </label>
-    <input type="text" class="select" [(ngModel)]="regalo" placeholder="¿Qué quiero de regalo?">
+    <div *ngIf="!ocultarRegalo">
+      <label class="label">
+        ¿Qué quiero de regalo?:
+      </label>
+      <input type="text" class="select" [(ngModel)]="regalo" placeholder="¿Qué quiero de regalo?">
+    </div>
+    <div *ngIf="ocultarRegalo && friend">
+        <label class="label">
+          ¿Qué quiero de regalo?:
+          {{regalo}}
+        </label>
+      </div>
     <button [disabled]="(validatePassword() || validateRegalo())" class="btn btn-primary" (click)="generarAmigo()">Quién
       es mi amigo?</button>
     <h1 *ngIf="friend"><strong>Mi amigo es:</strong><br>{{friend}}</h1>
