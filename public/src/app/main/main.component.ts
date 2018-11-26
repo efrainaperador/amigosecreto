@@ -63,6 +63,7 @@ export class MainComponent implements OnInit {
       var usuario = this.usuarios.filter((usuario)=>{
         return usuario._id = this.usuarioSeleccionado;
       })[0];
+      console.log(usuario)
       this.regalo = usuario.regalo ? usuario.regalo : "";
       console.log(this.regalo);
       if (this.regalo && this.regalo !== "") {
