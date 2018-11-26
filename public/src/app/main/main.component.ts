@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
-  encapsulation : ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class MainComponent implements OnInit {
   friend: String = '';
@@ -27,8 +27,8 @@ export class MainComponent implements OnInit {
   obtainUsers() {
     this.callObtainUsers().subscribe(response => {
       this.usuarios = response;
-      this.usuarios = this.usuarios.sort((a,b) => {
-        return a.familia > b.familia ? 1 : -1; 
+      this.usuarios = this.usuarios.sort((a, b) => {
+        return a.familia > b.familia ? 1 : -1;
       });
     }, error => {
       alert("Ocurrio un error vuelva a intentarlo")
@@ -36,12 +36,12 @@ export class MainComponent implements OnInit {
   }
 
   validatePassword() {
-    if(this.usuarioSeleccionado) {
+    if (this.usuarioSeleccionado) {
       let user = this.usuarios.filter((a) => {
         return a._id === this.usuarioSeleccionado;
       })[0];
 
-      if(user.password && user.password !== "") {
+      if (user.password && user.password !== "") {
         return user.password !== this.password;
       } else {
         return this.password.length < 4;
@@ -51,7 +51,7 @@ export class MainComponent implements OnInit {
   }
 
   validateRegalo() {
-    if(!this.regalo || this.regalo === "") {
+    if (!this.regalo || this.regalo === "") {
       return true;
     }
 
@@ -59,32 +59,41 @@ export class MainComponent implements OnInit {
   }
 
   generarAmigo() {
-    if(this.validatePassword()) {
-      alert("Contraseña equivocada");
-      return;
-    }
-    if(this.validateRegalo()) {
-      alert("Debe ingresar el regalo que quiere");
-      return;
-    }
-    if(this.usuarioSeleccionado) {
-      let user = this.usuarios.filter((a) => {
-        return a._id === this.usuarioSeleccionado;
-      })[0];
-      if(user) {
-        let amigoGenerado:any = this.usuarios.filter((a)=> {
-          return a.ocupado === false && 
-            a._id !== this.usuarioSeleccionado && 
-            a.familia !== user.familia;
-        });
-        console.log(amigoGenerado);
-        let aleatorio = Math.floor(Math.random()*amigoGenerado.length);
-        amigoGenerado = amigoGenerado[aleatorio];
-        this.friend = user.amigo && user.amigo !== "" ? user.amigo : amigoGenerado.nombre;
-        this.friendGift = amigoGenerado ? amigoGenerado.regalo ? amigoGenerado.regalo : "Aun no sabe" : "";
-        this.UpdateUser();
+    this.callObtainUsers().subscribe(response => {
+    this.usuarios = response;
+      this.usuarios = this.usuarios.sort((a, b) => {
+        return a.familia > b.familia ? 1 : -1;
+      });
+      if (this.validatePassword()) {
+        alert("Contraseña equivocada");
+        return;
       }
-    }
+      if (this.validateRegalo()) {
+        alert("Debe ingresar el regalo que quiere");
+        return;
+      }
+      if (this.usuarioSeleccionado) {
+        let user = this.usuarios.filter((a) => {
+          return a._id === this.usuarioSeleccionado;
+        })[0];
+        if (user) {
+          let amigoGenerado: any = this.usuarios.filter((a) => {
+            return a.ocupado === false &&
+              a._id !== this.usuarioSeleccionado &&
+              a.familia !== user.familia;
+          });
+          console.log(amigoGenerado);
+          let aleatorio = Math.floor(Math.random() * amigoGenerado.length);
+          amigoGenerado = amigoGenerado[aleatorio];
+          this.friend = user.amigo && user.amigo !== "" ? user.amigo : amigoGenerado.nombre;
+          this.friendGift = amigoGenerado ? amigoGenerado.regalo ? amigoGenerado.regalo : "Aun no sabe" : "";
+          this.UpdateUser();
+        }
+      }
+    }, error => {
+      alert("Ocurrio un error vuelva a intentarlo")
+    });
+
   }
 
   callObtainUsers() {
