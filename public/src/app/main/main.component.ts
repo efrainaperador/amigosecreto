@@ -71,7 +71,6 @@ export class MainComponent implements OnInit {
       } else {
         this.ocultarRegalo = false;
       }
-      
     }
   }
 
