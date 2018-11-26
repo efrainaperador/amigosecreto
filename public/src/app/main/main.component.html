@@ -1,5 +1,13 @@
 <div class="external-wrapper">
   <div class="internal-wrapper">
+    <h3>
+      <strong>Instrucciones</strong>
+      <p>
+        Seleccione su nombre en el campo ¿Quién soy?,
+        si es la primera vez que entra ingrese una contraseña de mas de 4 digitos, si quiere comprobar cuál es su amigo
+        secreto ingrese la contraseña que uso la primera vez.
+      </p>
+    </h3>
     <label class="label">
       Qui&eacute;n soy?
     </label>
@@ -10,13 +18,13 @@
       Contraseña:
     </label>
     <input type="password" class="select" [(ngModel)]="password" />
-    <button [disabled]="validatePassword()" class="btn btn-primary" (click)="generarAmigo()">Quién es mi amigo?</button>
+    <label class="label">
+      ¿Qué quiero de regalo?:
+    </label>
+    <input type="text" class="select" [(ngModel)]="regalo" placeholder="¿Qué quiero de regalo?">
+    <button [disabled]="(validatePassword() || validateRegalo())" class="btn btn-primary" (click)="generarAmigo()">Quién
+      es mi amigo?</button>
     <h1 *ngIf="friend"><strong>Mi amigo es:</strong><br>{{friend}}</h1>
-    <h3>
-      <strong>Instrucciones</strong>
-      <p>
-        Seleccione su nombre en el campo ¿Quién soy?, si es la primera vez que entra ingrese una contraseña de mas de 4 digitos, si quiere comprobar cuál es su amigo secreto ingrese la contraseña que uso la primera vez.
-      </p>
-    </h3>
+
   </div>
 </div>

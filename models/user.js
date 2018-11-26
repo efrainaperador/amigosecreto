@@ -21,6 +21,10 @@ let UserSchema = new Schema({
     password: {
         type: String,
         required: false
+    },
+    regalo: {
+        type: String,
+        required: false
     }
 });
 

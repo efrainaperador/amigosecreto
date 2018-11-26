@@ -32,6 +32,7 @@ router.post('/users', (req, res) => {
         var usuarioNuevo = JSON.parse(JSON.stringify(user));
         usuarioNuevo.amigo = amigo;
         usuarioNuevo.password = req.body.password;
+        usuarioNuevo.regalo = req.body.regalo;
         
         User.updateOne(user, usuarioNuevo, (err, user) => {
             if (!err) {
