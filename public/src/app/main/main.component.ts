@@ -51,15 +51,16 @@ export class MainComponent implements OnInit {
   }
 
   validateRegalo() {
-    if(this.usuarioSeleccionado) {
-      this.regalo = this.usuarioSeleccionado.regalo || "";
-    }
-    
     if (!this.regalo || this.regalo === "") {
       return true;
     }
-
     return false;
+  }
+
+  actualizar() {
+    if (this.usuarioSeleccionado) {
+      this.regalo = this.usuarioSeleccionado.regalo ? this.usuarioSeleccionado.regalo : "";
+    }
   }
 
   generarAmigo() {
