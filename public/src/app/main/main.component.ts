@@ -26,6 +26,9 @@ export class MainComponent implements OnInit {
   obtainUsers() {
     this.callObtainUsers().subscribe(response => {
       this.usuarios = response;
+      this.usuarios = this.usuarios.sort((a,b) => {
+        return a.familia > b.familia ? 1 : -1; 
+      });
     }, error => {
       alert("Ocurrio un error vuelva a intentarlo")
     });
@@ -55,7 +58,6 @@ export class MainComponent implements OnInit {
   }
 
   generarAmigo() {
-    console.log("-------------------------- GENERAR AMIGO --------------------------")
     if(this.validatePassword()) {
       alert("Contraseña equivocada");
       return;
@@ -68,7 +70,6 @@ export class MainComponent implements OnInit {
       let user = this.usuarios.filter((a) => {
         return a._id === this.usuarioSeleccionado;
       })[0];
-      console.log(user);
       if(user) {
         let amigoGenerado:any = this.usuarios.filter((a)=> {
           return a.ocupado === false && 
@@ -78,10 +79,7 @@ export class MainComponent implements OnInit {
         console.log(amigoGenerado);
         let aleatorio = Math.floor(Math.random()*amigoGenerado.length);
         amigoGenerado = amigoGenerado[aleatorio];
-        console.log(amigoGenerado)
-        console.log(user.amigo)
         this.friend = user.amigo && user.amigo !== "" ? user.amigo : amigoGenerado.nombre;
-        console.log(this.friend);
         this.UpdateUser();
       }
     }
