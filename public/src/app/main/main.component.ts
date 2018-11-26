@@ -64,6 +64,7 @@ export class MainComponent implements OnInit {
         return usuario._id = this.usuarioSeleccionado;
       })[0];
       this.regalo = usuario.regalo ? usuario.regalo : "";
+      console.log(this.regalo);
       if (this.regalo && this.regalo !== "") {
         this.ocultarRegalo = true;
       } else {
