@@ -30,7 +30,7 @@
           {{regalo}}
         </label>
       </div>
-    <button [disabled]="(validatePassword() || validateRegalo())" class="btn btn-primary" (click)="generarAmigo()">Quién
+    <button [disabled]="(validatePassword() || (validateRegalo()))" class="btn btn-primary" (click)="generarAmigo()">Quién
       es mi amigo?</button>
     <h1 *ngIf="friend"><strong>Mi amigo es:</strong><br>{{friend}}</h1>
     <h1 *ngIf="friend"><strong>Y quiere de regalo:</strong><br>{{friendGift}}</h1>

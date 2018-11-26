@@ -52,7 +52,7 @@ export class MainComponent implements OnInit {
   }
 
   validateRegalo() {
-    if (!this.regalo || this.regalo === "" || !this.ocultarRegalo) {
+    if (!this.regalo || this.regalo === "") {
       return true;
     }
     return false;
