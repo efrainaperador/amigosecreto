@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
-import { timingSafeEqual } from 'crypto';
 
 
 @Component({
