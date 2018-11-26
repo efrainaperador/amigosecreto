@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/map';
+import { timingSafeEqual } from 'crypto';
 
 
 @Component({
@@ -64,7 +65,12 @@ export class MainComponent implements OnInit {
         return usuario._id = this.usuarioSeleccionado;
       })[0];
       this.regalo = usuario.regalo ? usuario.regalo : "";
-      this.ocultarRegalo = true;
+      if (this.regalo && this.regalo !== "") {
+        this.ocultarRegalo = true;
+      } else {
+        this.ocultarRegalo = false;
+      }
+      
     }
   }
 
