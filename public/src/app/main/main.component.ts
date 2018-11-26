@@ -58,8 +58,13 @@ export class MainComponent implements OnInit {
   }
 
   actualizar() {
+    console.log("ACTUALIZAR");
+    console.log(this.usuarioSeleccionado)
     if (this.usuarioSeleccionado) {
-      this.regalo = this.usuarioSeleccionado.regalo ? this.usuarioSeleccionado.regalo : "";
+      var usuario = this.usuarios.filter((usuario)=>{
+        return usuario._id = this.usuarioSeleccionado;
+      })[0];
+      this.regalo = usuario.regalo ? usuario.regalo : "";
     }
   }
 
