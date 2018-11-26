@@ -59,6 +59,7 @@ export class MainComponent implements OnInit {
   }
 
   actualizar() {
+    this.friend = null;
     if (this.usuarioSeleccionado) {
       var usuario = this.usuarios.filter((usuario)=>{
         return usuario._id === this.usuarioSeleccionado;
