@@ -92,6 +92,9 @@ export class MainComponent implements OnInit {
           return a._id === this.usuarioSeleccionado;
         })[0];
         if (user) {
+          let amigo: any = this.usuarios.filter((a) => {
+            return a.nombre === user.amigo;
+          })[0];
           let amigoGenerado: any = this.usuarios.filter((a) => {
             return a.ocupado === false &&
               a._id !== this.usuarioSeleccionado &&
@@ -100,8 +103,12 @@ export class MainComponent implements OnInit {
           let aleatorio = Math.floor(Math.random() * amigoGenerado.length);
           amigoGenerado = amigoGenerado[aleatorio];
           this.friend = user.amigo && user.amigo !== "" ? user.amigo : amigoGenerado.nombre;
-          this.friendGift = amigoGenerado ? amigoGenerado.regalo ? amigoGenerado.regalo : "Aun no sabe" : "";
-          this.UpdateUser();
+          if(!amigo) {
+            this.friendGift = amigoGenerado && amigoGenerado.regalo ? amigoGenerado.regalo : "Aun no sabe";
+            this.UpdateUser();
+          } else {
+            this.friendGift = amigo.regalo;
+          }
         }
       }
     }, error => {
